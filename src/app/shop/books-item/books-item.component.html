@@ -1,0 +1,13 @@
+<div class="card h-100" *ngIf="book">
+  <img class="rounded mx-auto d-block" src="{{book.imageURL}}" alt="{{book.title}}">
+  <div class="card-body d-flex flex-column">
+    <h4 class="card-title">{{book.title}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Автор: {{book.authors}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Серія книг: {{book.bookSeries}}</h6>
+    <span class="mb-2">{{book.price | currency}}</span>
+    <div class="btn-group mt-auto">
+      <button class="btn btn-outline-secondary fa fa-shopping-cart me-2"></button>
+      <button class="btn btn-outline-secondary">Подивитись</button>
+    </div>
+  </div>
+</div>
