@@ -13,6 +13,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { RouterModule } from '@angular/router';
+import { ShopRoutingModule } from './shop-routing.module';
 
 
 
@@ -21,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     ShopComponent,
     BooksItemComponent,
     FilterPipe,
+    BookDetailsComponent,
 
   ],
   imports: [
@@ -33,10 +37,11 @@ import { SharedModule } from '../shared/shared.module';
     MatIconModule,
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    ShopRoutingModule
   ],
   exports: [
-    ShopComponent
   ]
 })
 export class ShopModule { }

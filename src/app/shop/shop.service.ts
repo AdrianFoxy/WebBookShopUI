@@ -6,6 +6,7 @@ import { Genre } from '../shared/models/genre';
 import { Pagination } from '../shared/models/pagination';
 import { Publisher } from '../shared/models/publisher';
 import { ShopParams } from '../shared/models/shopParams';
+import { SingleBook } from '../shared/models/singleBook';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ShopService {
     if(ShopParams.search) params = params.append('Search', ShopParams.search);
 
     return this.http.get<Pagination<Book[]>>(this.baseUrl + 'Book/catalog_books', {params});
+  }
+
+  getSingeBook(id: number){
+    return this.http.get<SingleBook>(this.baseUrl + 'Book/' + id);
   }
 
   getPublishers(){

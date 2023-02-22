@@ -6,7 +6,7 @@ import { Publisher } from '../shared/models/publisher';
 import { ShopService } from './shop.service';
 
 import { FormControl } from '@angular/forms';
-import { combineLatest, map, Observable, of, ReplaySubject, startWith } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { ShopParams } from '../shared/models/shopParams';
 
 
@@ -26,10 +26,6 @@ export class ShopComponent implements OnInit {
   publishers: Publisher[] = [];
   bookseries: BookSeries[] = [];
   genres: Genre[] = [];
-  // publisherIdSelected = 0;
-  // bookseriesIdSelected = 0;
-  // genreIds: number[] = [];
-  // sortSelected = 'name';
 
   shopParams = new ShopParams();
 
@@ -90,7 +86,6 @@ export class ShopComponent implements OnInit {
   }
 
   // Assignment of data to be passed to books api
-
   onPublisherSelected(publisherId: number){
     this.shopParams.publisherId = publisherId;
     this.shopParams.pageNumber= 1;
@@ -115,7 +110,6 @@ export class ShopComponent implements OnInit {
   }
 
   // DropDown lists for filters
-
   onGenreRemoved(genre: string) {
     const genresInFilter = this.selectedIdGenres.value as string[];
     this.removeFirst(genresInFilter, genre);
@@ -138,7 +132,6 @@ export class ShopComponent implements OnInit {
   }
 
   // Pagination
-
   onPageChanged(event: any){
     if(this.shopParams.pageNumber !== event){
       this.shopParams.pageNumber = event;
@@ -146,17 +139,18 @@ export class ShopComponent implements OnInit {
     }
   }
 
-
   // Search
   onSearch(){
     this.shopParams.search = this.searchTerm?.nativeElement.value;
     this.shopParams.pageNumber= 1;
     this.getBooksInCatalog();
   }
+
   // Reset all filters params
   onReset(){
     if(this.searchTerm) this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();
+    this.selectedIdGenres.setValue([]);
     this.getBooksInCatalog();
   }
 
