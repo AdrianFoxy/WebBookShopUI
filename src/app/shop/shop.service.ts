@@ -30,6 +30,7 @@ export class ShopService {
       }
     }
     if(ShopParams.sort) params = params.append('Sort', ShopParams.sort);
+    if(ShopParams.search) params = params.append('Search', ShopParams.search);
 
     return this.http.get<Pagination<Book[]>>(this.baseUrl + 'Book/catalog_books', {params});
   }

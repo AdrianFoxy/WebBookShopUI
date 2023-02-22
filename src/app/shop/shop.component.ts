@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Book } from '../shared/models/book';
 import { BookSeries } from '../shared/models/bookseries';
 import { Genre } from '../shared/models/genre';
@@ -19,6 +19,8 @@ import { ShopParams } from '../shared/models/shopParams';
 
 
 export class ShopComponent implements OnInit {
+
+  @ViewChild('search') searchTerm?: ElementRef;
 
   books: Book[] = [];
   publishers: Publisher[] = [];
@@ -87,13 +89,17 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  // Assignment of data to be passed to books api
+
   onPublisherSelected(publisherId: number){
     this.shopParams.publisherId = publisherId;
+    this.shopParams.pageNumber= 1;
     this.getBooksInCatalog();
   }
 
   onBookSeriesSelected(bookseriesId: number){
     this.shopParams.bookseriesId = bookseriesId;
+    this.shopParams.pageNumber= 1;
     this.getBooksInCatalog();
   }
 
@@ -104,8 +110,11 @@ export class ShopComponent implements OnInit {
 
   onGenresSelected(genresIds: number[]){
     this.shopParams.genreIds = this.selectedIdGenres.value;
+    this.shopParams.pageNumber= 1;
     this.getBooksInCatalog();
   }
+
+  // DropDown lists for filters
 
   onGenreRemoved(genre: string) {
     const genresInFilter = this.selectedIdGenres.value as string[];
@@ -128,11 +137,27 @@ export class ShopComponent implements OnInit {
     });
   }
 
+  // Pagination
+
   onPageChanged(event: any){
-    if(this.shopParams.pageNumber !== event.page){
-      this.shopParams.pageNumber = event.page;
+    if(this.shopParams.pageNumber !== event){
+      this.shopParams.pageNumber = event;
       this.getBooksInCatalog();
     }
+  }
+
+
+  // Search
+  onSearch(){
+    this.shopParams.search = this.searchTerm?.nativeElement.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+  // Reset all filters params
+  onReset(){
+    if(this.searchTerm) this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
+    this.getBooksInCatalog();
   }
 
 
