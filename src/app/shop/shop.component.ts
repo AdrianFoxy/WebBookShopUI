@@ -30,9 +30,9 @@ export class ShopComponent implements OnInit {
   shopParams = new ShopParams();
 
   sortOptions = [
-    {name: 'Alphabetical', value: 'name'},
-    {name: 'Price: Low to high', value: 'priceAsc'},
-    {name: 'Price: High to low', value: 'priceDesc'},
+    {name: 'За алфавітом', value: 'name'},
+    {name: 'Ціна: від низької до високої', value: 'priceAsc'},
+    {name: 'Ціна: від високої до низької', value: 'priceDesc'},
   ];
   totalCount = 0;
 

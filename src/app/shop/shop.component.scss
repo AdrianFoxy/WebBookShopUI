@@ -3,3 +3,25 @@ mat-form-field {
 }
 
 
+input[type="text"] {
+
+  background-color : #efeee8;
+}
+
+.form-control:focus {
+  border-color: #dbb695;
+  box-shadow: 0 0 0 0.1rem #dbb695;
+}
+
+select{
+  border-color: #dbb695;
+  background-color : #efeee8;
+}
+
+select:focus{
+  border-color: #dbb695;
+  box-shadow: 0 0 0 0.1rem #dbb695;
+}
+
+
+

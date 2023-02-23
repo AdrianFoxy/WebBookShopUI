@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" >
   <div class="row">
-    <section class="col-9">
+    <section class="col-9 mt-4">
       <div class="d-flex justify-content-between align-items center pb-2">
         <app-paging-header
           [totalCount]="totalCount"
@@ -9,14 +9,12 @@
           ></app-paging-header>
         <div class="input-group">
           <input (keyup.enter)="onSearch()" class="form-control border-end-0 border rounded-pill" type="text" placeholder="Пошук" #search>
-          <span class="input-group-append">
-            <button (click)="onSearch()" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+            <button (click)="onSearch()" class="btn btn-outline-secondary border rounded-pill ms-n3" type="button">
               <i class="fa fa-search"></i>
             </button>
-            <button (click)="onReset()" class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+            <button (click)="onReset()" class="btn btn-outline-secondary border-start-0 border rounded-pill ms-n3" type="button">
               <i class="fa fa-rotate-right"></i>
             </button>
-          </span>
         </div>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4">
@@ -33,8 +31,8 @@
       </div>
     </section>
 
-    <section class="col-3">
-      <h5 class="text-warning ms-3">Сортування</h5>
+    <section class="col-3 mt-4">
+      <h5 class="ms-3">Сортування</h5>
       <select class="form-select mb-4" (change)="onSortSelected($event)">
         <option *ngFor="let sort of sortOptions"
             [value]="sort.value">
@@ -42,7 +40,7 @@
         </option>
       </select>
 
-      <h5 class="text-warning ms-3">Видавництво</h5>
+      <h5 class="ms-3">Видавництво</h5>
       <ul class="list-group my-3">
         <li class="list-group-item"
         *ngFor="let publisher of publishers"
@@ -51,7 +49,7 @@
         (click)="onPublisherSelected(publisher.id)"
         >{{publisher.name}}</li>
       </ul>
-      <h5 class="text-warning ms-3" >Серія книг</h5>
+      <h5 class="ms-3" >Серія книг</h5>
       <ul class="list-group my-3">
         <li class="list-group-item"
         *ngFor="let bookserie of bookseries"
@@ -62,7 +60,7 @@
       </ul>
       <mat-form-field>
         <mat-label>Жанри</mat-label>
-        <mat-select [formControl]="selectedIdGenres" placeholder="Оберіть жанри зі списку" multiple (selectionChange)="onGenresSelected(selectedIdGenres.value)">
+        <mat-select [formControl]="selectedIdGenres" multiple (selectionChange)="onGenresSelected(selectedIdGenres.value)">
           <mat-select-trigger>
             <mat-chip-listbox>
               <mat-chip *ngFor="let genre of idsToGenres(selectedIdGenres.value)" [removable]="true" (removed)="onGenreRemoved(genre.id)">

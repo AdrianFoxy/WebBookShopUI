@@ -1,14 +1,14 @@
-<header class="d-flex flex-row align-items-center justify-content-between p-3 px-4 mb-3
-bg-white border-bottom fixed-top shadow-sm">
-
+<header class="d-flex flex-row align-items-center justify-content-between p-3 border-bottom fixed-top header_menu">
 <img src="/assets/images/bookstoreLogo.png" alt="logo" class="logo" style="max-height: 70px" routerLink="/">
     <nav class="my-2">
-      <a class="p-2" r
+      <a class="p-2 a_menu hover-underline-animation"
         routerLink="/"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}"
         >Головна</a>
-      <a class="p-2" routerLink="/shop" routerLinkActive="active">Каталог</a>
+      <a class="p-2 a_menu hover-underline-animation" routerLink="/shop" routerLinkActive="active">Каталог</a>
+      <a class="p-2 a_menu hover-underline-animation" routerLink="/empty" routerLinkActive="active">Добірки книг</a>
+      <a class="p-2 a_menu hover-underline-animation" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
     <div class="d-flex align-items-center">
       <a href="" class="position-relative">
