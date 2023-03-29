@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs';
+import { BasketService } from 'src/app/basket/basket.service';
 import { SingleBook } from 'src/app/shared/models/singleBook';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
@@ -12,9 +14,11 @@ import { ShopService } from '../shop.service';
 export class BookDetailsComponent implements OnInit{
 
 singleBook?: SingleBook;
+quantity = 1;
+quantityInBasket = 0;
 
 constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
-  private bcService: BreadcrumbService){}
+  private bcService: BreadcrumbService, private basketService: BasketService){}
 
   ngOnInit(): void {
     this.loadBook();
@@ -25,10 +29,41 @@ constructor(private shopService: ShopService, private activatedRoute: ActivatedR
     if(id) this.shopService.getSingeBook(+id).subscribe({
       next: singleBook => {
         this.singleBook = singleBook;
-        this.bcService.set('@bookDetails', singleBook.title)
+        this.bcService.set('@bookDetails', singleBook.title);
+        this.basketService.basketSource$.pipe(take(1)).subscribe({
+          next: basket => {
+            const item = basket?.items.find(x => x.id === +id);
+            if(item) {
+              this.quantity = item.quantity;
+              this.quantityInBasket = item.quantity;
+            }
+          }
+        })
       },
       error: error => console.log(error)
     })
   }
+
+  incrementQuantity(){
+    this.quantity++;
+  }
+
+  decrementQuantity(){
+    this.quantity--;
+  }
+
+  // updateBasket(){
+  //   if(this.singleBook){
+  //     if(this.quantity > this.quantityInBasket){
+  //       const itemsToAdd = this.quantity - this.quantityInBasket;
+  //       this.quantityInBasket += itemsToAdd;
+  //       this.basketService.addItemToBasket(this.singleBook, itemsToAdd);
+  //     } else {
+  //       const itemsToRemove = this.quantityInBasket - this.quantity;
+  //       this.quantityInBasket -= itemsToRemove;
+  //       this.basketService.removeItemFromBasket(this.singleBook, itemsToRemove);
+  //     }
+  //   }
+  // }
 
 }

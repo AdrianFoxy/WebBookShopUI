@@ -11,9 +11,16 @@ export interface BasketItem {
   price: number
   quantity: number
   imageURL: string
+  authors: string[]
 }
 
 export class Basket implements Basket {
   id = cuid();
   items: BasketItem[] = [];
+}
+
+export interface BasketTotals {
+  shipping: number;
+  subtotal: number;
+  total: number;
 }
