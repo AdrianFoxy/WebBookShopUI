@@ -41,8 +41,11 @@ export class BasketService {
     return this.basketSource.value;
   }
 
-  addItemToBasket(item: Book | BasketItem, quantity = 1){
-    if(this.isBook(item)) item = this.mapBookItemToBasketItem(item);
+  addItemToBasket(item: Book | SingleBook | BasketItem, quantity = 1){
+    if(this.isBook(item)) {item = this.mapBookItemToBasketItem(item); }
+    else if(this.isSingleBook(item)){
+      item = this.mapSingleBookItemToBasketItem(item);
+    }
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     basket.items = this.addOrUpdateItem(basket.items, item, quantity);
     this.setBasket(basket);
@@ -120,8 +123,12 @@ export class BasketService {
     this.basketTotalSource.next({shipping, total, subtotal});
   }
 
-  private isBook(item: Book | BasketItem): item is Book{
+  private isBook(item: Book | SingleBook | BasketItem): item is Book{
     return (item as Book).title !== undefined;
+  }
+
+  private isSingleBook(item: Book | SingleBook | BasketItem): item is SingleBook {
+    return (item as SingleBook).author !== undefined;
   }
 
 }

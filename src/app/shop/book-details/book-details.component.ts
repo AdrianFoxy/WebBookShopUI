@@ -52,18 +52,22 @@ constructor(private shopService: ShopService, private activatedRoute: ActivatedR
     this.quantity--;
   }
 
-  // updateBasket(){
-  //   if(this.singleBook){
-  //     if(this.quantity > this.quantityInBasket){
-  //       const itemsToAdd = this.quantity - this.quantityInBasket;
-  //       this.quantityInBasket += itemsToAdd;
-  //       this.basketService.addItemToBasket(this.singleBook, itemsToAdd);
-  //     } else {
-  //       const itemsToRemove = this.quantityInBasket - this.quantity;
-  //       this.quantityInBasket -= itemsToRemove;
-  //       this.basketService.removeItemFromBasket(this.singleBook, itemsToRemove);
-  //     }
-  //   }
-  // }
+  updateBasket(){
+    if(this.singleBook){
+      if(this.quantity > this.quantityInBasket){
+        const itemsToAdd = this.quantity - this.quantityInBasket;
+        this.quantityInBasket += itemsToAdd;
+        this.basketService.addItemToBasket(this.singleBook, itemsToAdd);
+      } else {
+        const itemsToRemove = this.quantityInBasket - this.quantity;
+        this.quantityInBasket -= itemsToRemove;
+        this.basketService.removeItemFromBasket(this.singleBook.id, itemsToRemove);
+      }
+    }
+  }
+
+  get buttonText(){
+    return this.quantityInBasket === 0 ? 'Add to basket' : 'Update basket';
+  }
 
 }
