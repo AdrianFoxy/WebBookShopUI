@@ -13,7 +13,8 @@ export interface SingleBook {
   amount: number;
   price: number;
   releaseYear: number;
-  uploadDate: Date;
+  uploadedInfo: string;
+  updatedInfo: string;
   bookSeries: BookSeries;
   publisher: Publisher;
   author: Author[];
