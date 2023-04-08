@@ -1,81 +1,79 @@
+<ng-container *ngIf="(basketService.basketSource$ | async) as basket">
+  <div class="card">
+    <div class="row">
+        <div class="col-md cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><b>Кошик</b></h4></div>
+                </div>
+            </div>
+            <table class="table main align-items-center">
+              <thead class="bg-light">
+                <tr>
+                  <th><div class="py-2">Товар</div></th>
+                  <th><div class="py-2">Назва</div></th>
+                  <th><div class="py-2">Ціна</div></th>
+                  <th><div class="py-2">Кількість</div></th>
+                  <th><div class="py-2">Всьго</div></th>
+                  <th><div class="py-2"></div></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of basket.items">
+                  <td>
+                    <img class="img-in-basket" src="{{item.imageURL}}">
+                  </td>
+                  <td>
+                    <div class="col">
+                      <div class="row" routerLink="/shop/{{item.id}}" style="cursor: pointer;"> {{item.productName}}</div>
+                      <div class="row text-muted">Автор: {{item.authors}}</div>
+                  </div>
+                  </td>
+                  <td class="align-middle">
+                    <strong>{{item.price}} ₴</strong>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex align-items-center">
+                      <i class="fa fa-minus-circle me-2"
+                      style="cursor: pointer; font-size: 1.5em;"
+                      (click)="removeitem(item.id, 1)"></i>
+                      <strong style="font-size: 1.5em">{{item.quantity}}</strong>
+                      <i class="fa fa-plus-circle mx-2"
+                      style="cursor: pointer; font-size: 1.5em;"
+                      (click)="incrementQuantity(item)"></i>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <strong>{{item.price * item.quantity}}₴</strong>
+                  </td>
+                  <td class="align-middle">
+                    <span class="close" (click)="removeitem(item.id, item.quantity)"
+                    style="font-size: 1em; cursor: pointer;">&#10005;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="back-to-shop"><a routerLink="/shop">&leftarrow;</a><span class="text-muted">Повернутися до покупок</span></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="col-md cart">
+       <app-order-totals></app-order-totals>
+        <a routerLink="/checkout" class="btn">
+          Перейти до оформлення замовлення
+        </a>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
 <div class="container">
   <div *ngIf="(basketService.basketSource$ | async) === null">
     <p>Кошик порожній</p>
   </div>
-
-  <ng-container *ngIf="(basketService.basketSource$ | async) as basket">
-    <div class="container">
-      <div class="row">
-        <div class="table-reponsive">
-          <table class="table">
-            <thead class="bg-light text text-uppercase">
-              <tr>
-                <th><div class="py-2">Продукт</div></th>
-                <th><div class="py-2">Ціна</div></th>
-                <th><div class="py-2">Кількість</div></th>
-                <th><div class="py-2">Всьго</div></th>
-                <th><div class="py-2">Видалити</div></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of basket.items">
-                <th>
-                  <div class="p-2 d-inline-block">
-                    <img src="{{item.imageURL}}" alt="{{item.productName}}" class="img-fluid"
-                    style="max-height: 50px;">
-                    <div class="ms-3 d-inline-block align-midlle">
-                      <h5 class="mb-0">
-                        <a routerLink="/shop/{{item.id}}" class="text-dark text-decoration-none">
-                          {{item.productName}}
-                        </a>
-                      </h5>
-                      <span class="text-muted">
-                        Автор: {{item.authors}}
-                      </span>
-                    </div>
-                  </div>
-                </th>
-                <td class="align-middle">
-                  <strong>{{item.price}} ₴</strong>
-                </td>
-                <td class="align-middle">
-                  <div class="d-flex align-items-center">
-                    <i class="fa fa-minus-circle text-warning me-2"
-                    style="cursor: pointer; font-size: 2em;"
-                    (click)="removeitem(item.id, 1)"></i>
-                    <strong style="font-size: 1.5em">{{item.quantity}}</strong>
-                    <i class="fa fa-plus-circle text-warning mx-2"
-                    style="cursor: pointer; font-size: 2em;"
-                    (click)="incrementQuantity(item)"></i>
-                  </div>
-                </td>
-                <td class="align-middle">
-                  <strong>{{item.price * item.quantity}} ₴</strong>
-                </td>
-                <td class="align-middle">
-                  <a class="text-danger">
-                    <i
-                    (click)="removeitem(item.id, item.quantity)"
-                    class="fa fa-trash" style="font-size: 2em; cursor: pointer;"></i>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-6 offset-6">
-          <app-order-totals></app-order-totals>
-          <div class="d-grid">
-            <a routerLink="/checkout" class="btn btn-outline-primary py-2">
-              Procced to checkout
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </ng-container>
 </div>
+
