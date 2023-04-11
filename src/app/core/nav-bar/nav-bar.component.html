@@ -19,8 +19,8 @@
       </a>
 
       <ng-container *ngIf="(accountService.currentUser$ | async) === null">
-        <a routerLink="/account/login" class="btn btn-outline-secondary me-2">Login</a>
-        <a routerLink="/account/register" class="btn btn-outline-secondary me-2">Sign up</a>
+        <a routerLink="/account/login" class="btn btn-outline-secondary me-2">Увійти</a>
+        <a routerLink="/account/register" class="btn btn-outline-secondary me-2">Реєстрація</a>
       </ng-container>
 
       <ng-container *ngIf="accountService.currentUser$ | async as user">

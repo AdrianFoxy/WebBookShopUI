@@ -15,10 +15,11 @@ const routes: Routes = [
   {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule)},
   {
     path: 'checkout',
+    data: {breadcrumb: 'Перевірка'},
     canActivate: [AuthGuard],
     loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
   },
-  {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
+  {path: 'account',  data: {breadcrumb: 'Аккаунт'}, loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
