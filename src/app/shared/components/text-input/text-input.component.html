@@ -1,12 +1,12 @@
-<div class="form-outline mb-4">
-  <label class="form-label" for="floatingInput">{{label}}</label>
+<div class="form-floating mb-3">
   <input
-    type={{type}}
-    [formControl]="control"
-    placeholder="{{label}}"
-    class="form-control form-control-lg"
-    [ngClass]="(control.touched) ? control.invalid ? 'is-invalid': 'is valid': null"/>
-
+      type={{type}}
+      class="form-control"
+      [formControl]="control"
+      id="floatingInput"
+      placeholder="{{label}}"
+      [ngClass]="(control.touched) ? control.invalid ? 'is-invalid': 'is valid': null"/>
+  <label for="floatingInput">{{label}}</label>
   <div *ngIf="control.status === 'PENDING'"  class="fa fa-spinner fa-spin loader"></div>
   <div *ngIf="control.errors?.['required']" class="invalid-feedback">Поле {{label}} обов'язкове</div>
   <div *ngIf="control.errors?.['maxlength']" class="invalid-feedback">Значення занадто довге</div>
