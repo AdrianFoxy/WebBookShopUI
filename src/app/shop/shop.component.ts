@@ -8,6 +8,7 @@ import { ShopService } from './shop.service';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject } from 'rxjs';
 import { ShopParams } from '../shared/models/shopParams';
+import { Author } from '../shared/models/author';
 
 
 
@@ -26,6 +27,7 @@ export class ShopComponent implements OnInit {
   publishers: Publisher[] = [];
   bookseries: BookSeries[] = [];
   genres: Genre[] = [];
+  authors: Author[] = [];
 
   shopParams = new ShopParams();
 
@@ -41,6 +43,10 @@ export class ShopComponent implements OnInit {
   searchCtrl = new FormControl();
   filteredData: ReplaySubject<Genre[]> = new ReplaySubject<Genre[]>(1);
 
+  // Author filter
+  selectedIdAuthors = new FormControl();
+
+
 
   constructor(private shopService: ShopService) {
   }
@@ -50,6 +56,7 @@ export class ShopComponent implements OnInit {
     this.getPublishersForFilter();
     this.getBookSeriesForFilter();
     this.getGenreForFilter();
+    this.getAuthorForFilter();
   }
 
   getBooksInCatalog(){
@@ -85,6 +92,13 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  getAuthorForFilter(){
+    this.shopService.getAuthor().subscribe({
+      next: response => this.authors = response, // what to do next
+      error: error => console.log(error),
+    })
+  }
+
   // Assignment of data to be passed to books api
   onPublisherSelected(publisherId: number){
     this.shopParams.publisherId = publisherId;
@@ -114,7 +128,24 @@ export class ShopComponent implements OnInit {
     const genresInFilter = this.selectedIdGenres.value as string[];
     this.removeFirst(genresInFilter, genre);
     this.selectedIdGenres.setValue(genresInFilter); // To trigger change detection
+    this.getBooksInCatalog();
   }
+
+
+  // AuthorFilter
+  onAuthorsSelected(authorsIds: number[]){
+    this.shopParams.authorIds = this.selectedIdAuthors.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onAuthorRemoved(author: string) {
+    const authorsInFilter = this.selectedIdAuthors.value as string[];
+    this.removeFirst(authorsInFilter, author);
+    this.selectedIdAuthors.setValue(authorsInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
+
   private removeFirst<T>(array: T[], toRemove: T): void {
     const index = array.indexOf(toRemove);
     if (index !== -1) {
@@ -128,6 +159,15 @@ export class ShopComponent implements OnInit {
     }
     return ids.map((id) => {
       return this.genres.find((t) => t.id == id);
+    });
+  }
+
+  idsToAuthors(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.authors.find((t) => t.id == id);
     });
   }
 

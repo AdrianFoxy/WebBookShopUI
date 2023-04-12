@@ -7,6 +7,7 @@ import { Pagination } from '../shared/models/pagination';
 import { Publisher } from '../shared/models/publisher';
 import { ShopParams } from '../shared/models/shopParams';
 import { SingleBook } from '../shared/models/singleBook';
+import { Author } from '../shared/models/author';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,13 @@ export class ShopService {
         params = params.append('GenreIds', ShopParams.genreIds[i].toString());
       }
     }
+
+    if(ShopParams.authorIds && ShopParams.authorIds.length > 0){
+      for(let i = 0; i < ShopParams.authorIds.length; i++){
+        params = params.append('AuthorIds', ShopParams.authorIds[i].toString());
+      }
+    }
+
     if(ShopParams.sort) params = params.append('Sort', ShopParams.sort);
     if(ShopParams.search) params = params.append('Search', ShopParams.search);
 
@@ -50,5 +58,9 @@ export class ShopService {
 
   getGenre(){
     return this.http.get<Genre[]>(this.baseUrl + 'Genre/all-genres')
+  }
+
+  getAuthor(){
+    return this.http.get<Author[]>(this.baseUrl + 'Book/authors')
   }
 }

@@ -25,7 +25,6 @@ import { ShopRoutingModule } from './shop-routing.module';
     BooksItemComponent,
     FilterPipe,
     BookDetailsComponent,
-
   ],
   imports: [
     CommonModule,
@@ -42,6 +41,7 @@ import { ShopRoutingModule } from './shop-routing.module';
     ShopRoutingModule
   ],
   exports: [
+
   ]
 })
 export class ShopModule { }

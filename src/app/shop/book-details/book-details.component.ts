@@ -6,6 +6,7 @@ import { SingleBook } from 'src/app/shared/models/singleBook';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
 
+
 @Component({
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',

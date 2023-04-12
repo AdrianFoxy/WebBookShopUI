@@ -79,6 +79,30 @@
       </mat-form-field>
       <br>
       {{selectedIdGenres.value | json}}
+
+      <mat-form-field>
+        <mat-label>Автори</mat-label>
+        <mat-select [formControl]="selectedIdAuthors" multiple (selectionChange)="onAuthorsSelected(selectedIdAuthors.value)">
+          <mat-select-trigger>
+            <mat-chip-listbox>
+              <mat-chip *ngFor="let author of idsToAuthors(selectedIdAuthors.value)" [removable]="true" (removed)="onAuthorRemoved(author.id)">
+                {{ author.fullName }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-listbox>
+          </mat-select-trigger>
+          <mat-option>
+            <ngx-mat-select-search [formControl]="searchCtrl" placeholderLabel="Пошук"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let author of authors | filter: searchCtrl.value" [value]="author.id">
+            {{author.fullName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      {{selectedIdAuthors.value | json}}
+
+
     </section>
   </div>
 </div>

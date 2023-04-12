@@ -3,6 +3,7 @@ export class ShopParams{
   publisherId = 0;
   bookseriesId = 0;
   genreIds: number[] = [];
+  authorIds: number[] = [];
   sort = 'name';
   pageNumber = 1;
   pageSize = 6;
