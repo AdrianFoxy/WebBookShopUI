@@ -2,16 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './checkout.component';
 import { CheckoutRoutingModule } from './checkout-routing.module';
-
-
+import { SharedModule } from '../shared/shared.module';
+import { CheckoutContactComponent } from './checkout-contact/checkout-contact.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutContactComponent,
+    DeliveryComponent,
+    ReviewComponent,
   ],
   imports: [
     CommonModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
+    SharedModule
   ]
 })
 export class CheckoutModule { }

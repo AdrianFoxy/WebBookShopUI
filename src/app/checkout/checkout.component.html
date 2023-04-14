@@ -1,3 +1,27 @@
 <div class="container mt-5">
-  <h1>Тільки авторизовані користувачі можуть це використовувати</h1>
+  <div class="class row">
+    <div class="card">
+      <app-stepper [linearModeSelected]="false" #appStepper>
+        <cdk-step [label]="'ContactInfo'" [completed]="checkoutForm.get('contactForm')?.valid">
+          <app-checkout-contact [checkoutForm]="checkoutForm"></app-checkout-contact>
+        </cdk-step>
+        <cdk-step [label]="'Delivery'"  [completed]="checkoutForm.get('deliveryForm')?.valid">
+          <app-delivery [checkoutForm]="checkoutForm"></app-delivery>
+        </cdk-step>
+        <cdk-step [label]="'Review'">
+          <app-review></app-review>
+        </cdk-step>
+      </app-stepper>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div class="col-md cart">
+         <app-order-totals></app-order-totals>
+          <a routerLink="/checkout" class="btn">
+            Перейти до оформлення замовлення
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
