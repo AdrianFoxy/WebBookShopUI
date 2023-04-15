@@ -35,6 +35,7 @@ export class CheckoutComponent {
   }
 
 
+
   updateAddressValidation(value: string | null) {
     const addressControl = this.checkoutForm.get('deliveryForm.address');
     if (addressControl) { // добавляем проверку на null или undefined

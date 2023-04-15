@@ -7,7 +7,9 @@
             id="{{method.id}}"
             formControlName="deliveryMethod"
             style="cursor: pointer;"
-            [checked]="method.id === 1">
+            [checked]="method.id === 1"
+            (click)="setShippingPrice(method)">
+
             <label for="{{method.id}}" class="form-check-label ms-2 mb-3">
               <strong>{{method.name}} - {{method.price}}</strong>
               <br>

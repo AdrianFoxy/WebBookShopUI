@@ -15,6 +15,11 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
   constructor(private http: HttpClient, private router: Router) { }
 
+  getCurrentUser(): User | null {
+    return JSON.parse(localStorage.getItem('token') || '{}');
+  }
+
+
   loadCurrentUser(token: string | null) {
     if (token == null) {
       this.currentUserSource.next(null);
