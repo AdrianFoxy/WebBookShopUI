@@ -72,7 +72,7 @@
           <mat-option>
             <ngx-mat-select-search [formControl]="searchCtrl" placeholderLabel="Пошук"></ngx-mat-select-search>
           </mat-option>
-          <mat-option *ngFor="let genre of genres | filter: searchCtrl.value" [value]="genre.id">
+          <mat-option *ngFor="let genre of genres | filter: searchCtrl.value: 'name'" [value]="genre.id">
             {{genre.name}}
           </mat-option>
         </mat-select>
@@ -92,9 +92,9 @@
             </mat-chip-listbox>
           </mat-select-trigger>
           <mat-option>
-            <ngx-mat-select-search [formControl]="searchCtrl" placeholderLabel="Пошук"></ngx-mat-select-search>
+            <ngx-mat-select-search [formControl]="authorSearchCtrl" placeholderLabel="Пошук"></ngx-mat-select-search>
           </mat-option>
-          <mat-option *ngFor="let author of authors | filter: searchCtrl.value" [value]="author.id">
+          <mat-option *ngFor="let author of authors | filter: authorSearchCtrl.value: 'fullName'" [value]="author.id">
             {{author.fullName}}
           </mat-option>
         </mat-select>

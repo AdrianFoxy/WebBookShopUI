@@ -14,9 +14,9 @@ export class CheckoutComponent {
 
   checkoutForm = this.fb.group({
     contactForm: this.fb.group({
-      contactName: ['', Validators.required],
-      contactEmail: ['', Validators.required],
-      contactPhone: ['', Validators.required]
+      contactName: ['', [Validators.required, Validators.maxLength(100)]],
+      contactEmail: ['', [Validators.required, Validators.email]],
+      contactPhone: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(9), Validators.maxLength(12)]]
     }),
     deliveryForm: this.fb.group({
       deliveryMethod: ['', Validators.required],

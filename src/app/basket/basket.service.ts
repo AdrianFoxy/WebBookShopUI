@@ -75,11 +75,15 @@ export class BasketService {
   deleteBasket(basket: Basket) {
     return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({
       next: () => {
-        this.basketSource.next(null);
-        this.basketTotalSource.next(null);
-        localStorage.removeItem('basket_id');
+        this.deleteLocalBasket();
       }
     })
+  }
+
+  deleteLocalBasket(){
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
   }
 
   createBasket():Basket {
@@ -129,12 +133,12 @@ export class BasketService {
     this.basketTotalSource.next({shipping: this.shipping, total, subtotal});
   }
 
-  private isBook(item: Book | SingleBook | BasketItem): item is Book{
-    return (item as Book).title !== undefined;
+  private isBook(item: Book | SingleBook | BasketItem): item is Book {
+    return ('authors' in item) && !('author' in item);
   }
 
   private isSingleBook(item: Book | SingleBook | BasketItem): item is SingleBook {
-    return (item as SingleBook).author !== undefined;
+    return ('author' in item) && !('authors' in item);
   }
 
 }

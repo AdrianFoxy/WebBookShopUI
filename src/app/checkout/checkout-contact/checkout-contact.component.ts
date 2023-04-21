@@ -11,7 +11,7 @@ import { AccountService } from 'src/app/account/account.service';
 export class CheckoutContactComponent {
   @Input() checkoutForm?: FormGroup;
 
-  constructor(private accountService: AccountService){}
+  constructor(public accountService: AccountService){}
 
   getContactDataValuesByClick(){
     this.accountService.currentUser$.pipe(take(1)).subscribe( user => {

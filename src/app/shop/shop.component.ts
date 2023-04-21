@@ -6,7 +6,6 @@ import { Publisher } from '../shared/models/publisher';
 import { ShopService } from './shop.service';
 
 import { FormControl } from '@angular/forms';
-import { ReplaySubject } from 'rxjs';
 import { ShopParams } from '../shared/models/shopParams';
 import { Author } from '../shared/models/author';
 
@@ -41,10 +40,10 @@ export class ShopComponent implements OnInit {
   // Genre filter
   selectedIdGenres = new FormControl();
   searchCtrl = new FormControl();
-  filteredData: ReplaySubject<Genre[]> = new ReplaySubject<Genre[]>(1);
 
   // Author filter
   selectedIdAuthors = new FormControl();
+  authorSearchCtrl = new FormControl();
 
 
 

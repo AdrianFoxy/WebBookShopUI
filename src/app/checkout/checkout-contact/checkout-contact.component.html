@@ -1,7 +1,7 @@
 <div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm">
   <div class="d-flex justify-content-between align-items center">
     <h4>Контактні дані</h4>
-    <button class="btn btn-outline-success mb-3" (click)="getContactDataValuesByClick()">
+    <button class="btn btn-outline-success mb-3" *ngIf="accountService.currentUser$ | async as user" (click)="getContactDataValuesByClick()">
       Використати дані з вашого профілю
     </button>
   </div>

@@ -46,14 +46,20 @@ constructor(private shopService: ShopService, private activatedRoute: ActivatedR
   }
 
   incrementQuantity(){
-    this.quantity++;
+    if (this.singleBook && this.quantity < this.singleBook.amount) {
+      this.quantity++;
+    }
   }
 
   decrementQuantity(){
-    this.quantity--;
+    if (this.quantity > 0) {
+      this.quantity--;
+    }
   }
 
   updateBasket(){
+    console.log(this.singleBook?.author.map(author => author.fullName))
+
     if(this.singleBook){
       if(this.quantity > this.quantityInBasket){
         const itemsToAdd = this.quantity - this.quantityInBasket;

@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CheckoutContactComponent } from './checkout-contact/checkout-contact.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { ReviewComponent } from './review/review.component';
+import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ReviewComponent } from './review/review.component';
     CheckoutContactComponent,
     DeliveryComponent,
     ReviewComponent,
+    CheckoutSuccessComponent,
   ],
   imports: [
     CommonModule,
