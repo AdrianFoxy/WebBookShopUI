@@ -24,17 +24,54 @@ export class ShopService {
 
     if(ShopParams.sort) params = params.append('PageIndex', ShopParams.pageNumber);
     if(ShopParams.sort) params = params.append('pageSize', ShopParams.pageSize);
-    if(ShopParams.publisherId > 0) params = params.append('PublisherId', ShopParams.publisherId);
-    if(ShopParams.bookseriesId > 0) params = params.append('BookseriesId', ShopParams.bookseriesId);
+    // if(ShopParams.publisherId > 0) params = params.append('PublisherId', ShopParams.publisherId);
+    // if(ShopParams.bookseriesIds > 0) params = params.append('BookseriesId', ShopParams.bookseriesIds);
     if(ShopParams.genreIds && ShopParams.genreIds.length > 0){
       for(let i = 0; i < ShopParams.genreIds.length; i++){
         params = params.append('GenreIds', ShopParams.genreIds[i].toString());
       }
     }
 
+    if(ShopParams.bookseriesIds && ShopParams.bookseriesIds.length > 0){
+      for(let i = 0; i < ShopParams.bookseriesIds.length; i++){
+        params = params.append('BookseriesIds', ShopParams.bookseriesIds[i].toString());
+      }
+    }
+
     if(ShopParams.authorIds && ShopParams.authorIds.length > 0){
       for(let i = 0; i < ShopParams.authorIds.length; i++){
         params = params.append('AuthorIds', ShopParams.authorIds[i].toString());
+      }
+    }
+
+    if(ShopParams.publisherIds && ShopParams.publisherIds.length > 0){
+      for(let i = 0; i < ShopParams.publisherIds.length; i++){
+        params = params.append('PublishersIds', ShopParams.publisherIds[i].toString());
+      }
+    }
+
+    // Except
+    if(ShopParams.bookseriesIdsExcept && ShopParams.bookseriesIdsExcept.length > 0){
+      for(let i = 0; i < ShopParams.bookseriesIdsExcept.length; i++){
+        params = params.append('ExceptBookSeriesId', ShopParams.bookseriesIdsExcept[i].toString());
+      }
+    }
+
+    if(ShopParams.publisherIdsExcept && ShopParams.publisherIdsExcept.length > 0){
+      for(let i = 0; i < ShopParams.publisherIdsExcept.length; i++){
+        params = params.append('ExceptPublishersId', ShopParams.publisherIdsExcept[i].toString());
+      }
+    }
+
+    if(ShopParams.genreIdsExcept && ShopParams.genreIdsExcept.length > 0){
+      for(let i = 0; i < ShopParams.genreIdsExcept.length; i++){
+        params = params.append('ExceptGenresIds', ShopParams.genreIdsExcept[i].toString());
+      }
+    }
+
+    if(ShopParams.authorIdsExcept && ShopParams.authorIdsExcept.length > 0){
+      for(let i = 0; i < ShopParams.authorIdsExcept.length; i++){
+        params = params.append('ExceptAuthorIds', ShopParams.authorIdsExcept[i].toString());
       }
     }
 

@@ -45,6 +45,29 @@ export class ShopComponent implements OnInit {
   selectedIdAuthors = new FormControl();
   authorSearchCtrl = new FormControl();
 
+  // Publisher filter
+  selectedIdPublishers = new FormControl();
+  publisherSearchCtrl = new FormControl();
+
+  // BookSeries filter
+  selectedIdBookSeries = new FormControl();
+  bookSeriesSearchCtrl = new FormControl();
+
+  // BookSeries except filter
+  selectedIdBookSeriesExcept = new FormControl();
+  bookSeriesSearchCtrlExcept = new FormControl();
+
+  // Publisher except filter
+  selectedIdPublishersExcept = new FormControl();
+  publisherSearchCtrlExcept = new FormControl();
+
+  // Genre except filter
+  selectedIdGenresExcept = new FormControl();
+  searchCtrlExcept = new FormControl();
+
+  // Author except filter
+  selectedIdAuthorsExcept = new FormControl();
+  authorSearchCtrlExcept = new FormControl();
 
 
   constructor(private shopService: ShopService) {
@@ -70,16 +93,18 @@ export class ShopComponent implements OnInit {
     })
   }
 
+  // get data for filter ALL
+
   getPublishersForFilter(){
     this.shopService.getPublishers().subscribe({
-      next: response => this.publishers = [{id: 0, name:'Усі'}, ...response], // what to do next
+      next: response => this.publishers = response, // what to do next
       error: error => console.log(error) // what to do if error
     })
   }
 
   getBookSeriesForFilter(){
     this.shopService.getBookSeries().subscribe({
-      next: response => this.bookseries = [{id: 0, name:'Усі'}, ...response], // what to do next
+      next: response => this.bookseries = response, // what to do next
       error: error => console.log(error),
     })
   }
@@ -99,30 +124,18 @@ export class ShopComponent implements OnInit {
   }
 
   // Assignment of data to be passed to books api
-  onPublisherSelected(publisherId: number){
-    this.shopParams.publisherId = publisherId;
-    this.shopParams.pageNumber= 1;
-    this.getBooksInCatalog();
-  }
-
-  onBookSeriesSelected(bookseriesId: number){
-    this.shopParams.bookseriesId = bookseriesId;
-    this.shopParams.pageNumber= 1;
-    this.getBooksInCatalog();
-  }
 
   onSortSelected(event: any){
     this.shopParams.sort = event.target.value;
     this.getBooksInCatalog();
     }
 
+  // GenreFilter
   onGenresSelected(genresIds: number[]){
     this.shopParams.genreIds = this.selectedIdGenres.value;
     this.shopParams.pageNumber= 1;
     this.getBooksInCatalog();
   }
-
-  // DropDown lists for filters
   onGenreRemoved(genre: string) {
     const genresInFilter = this.selectedIdGenres.value as string[];
     this.removeFirst(genresInFilter, genre);
@@ -145,6 +158,89 @@ export class ShopComponent implements OnInit {
     this.getBooksInCatalog();
   }
 
+  // PublisherFilter
+  onPublisherSelected(publishersId: number[]){
+    this.shopParams.publisherIds = this.selectedIdPublishers.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onPublisherRemoved(publisher: string) {
+    const publishersInFilter = this.selectedIdPublishers.value as string[];
+    this.removeFirst(publishersInFilter, publisher);
+    this.selectedIdPublishers.setValue(publishersInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
+
+  // BookSeriesFilter
+  onBookSeriesSelected(bookseriesIds: number[]){
+    this.shopParams.bookseriesIds = this.selectedIdBookSeries.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onBookSeriesRemoved(bookseries: string) {
+    const bookseriesInFilter = this.selectedIdBookSeries.value as string[];
+    this.removeFirst(bookseriesInFilter, bookseries);
+    this.selectedIdBookSeries.setValue(bookseriesInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
+
+  // BookSeriesFilter Except
+  onBookSeriesSelectedExcept(bookseriesIdsExcept: number[]){
+    this.shopParams.bookseriesIdsExcept = this.selectedIdBookSeriesExcept.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onBookSeriesRemovedExcept(bookseries: string) {
+    const bookseriesInFilter = this.selectedIdBookSeriesExcept.value as string[];
+    this.removeFirst(bookseriesInFilter, bookseries);
+    this.selectedIdBookSeriesExcept.setValue(bookseriesInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
+
+  // PublisherFilter
+  onPublisherSelectedExcept(publisherIdsExcept: number[]){
+    this.shopParams.publisherIdsExcept = this.selectedIdPublishersExcept.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onPublisherRemovedExcept(publisher: string) {
+    const publishersInFilter = this.selectedIdPublishersExcept.value as string[];
+    this.removeFirst(publishersInFilter, publisher);
+    this.selectedIdPublishersExcept.setValue(publishersInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
+
+  // GenreFilter Except
+  onGenresSelectedExcept(genresIdsExcept: number[]){
+    this.shopParams.genreIdsExcept = this.selectedIdGenresExcept.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onGenreRemovedExcept(genre: string) {
+    const genresInFilter = this.selectedIdGenresExcept.value as string[];
+    this.removeFirst(genresInFilter, genre);
+    this.selectedIdGenresExcept.setValue(genresInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+ }
+
+   // AuthorFilter Except
+   onAuthorsSelectedExcept(authorsIdsExcept: number[]){
+    this.shopParams.authorIdsExcept = this.selectedIdAuthorsExcept.value;
+    this.shopParams.pageNumber= 1;
+    this.getBooksInCatalog();
+  }
+
+  onAuthorRemovedExcept(author: string) {
+    const authorsInFilter = this.selectedIdAuthorsExcept.value as string[];
+    this.removeFirst(authorsInFilter, author);
+    this.selectedIdAuthorsExcept.setValue(authorsInFilter); // To trigger change detection
+    this.getBooksInCatalog();
+  }
   private removeFirst<T>(array: T[], toRemove: T): void {
     const index = array.indexOf(toRemove);
     if (index !== -1) {
@@ -161,12 +257,66 @@ export class ShopComponent implements OnInit {
     });
   }
 
+  idsToGenresExcept(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.genres.find((t) => t.id == id);
+    });
+  }
+
+  idsToBookSeries(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.bookseries.find((t) => t.id == id);
+    });
+  }
+
+  idsToBookSeriesExcept(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.bookseries.find((t) => t.id == id);
+    });
+  }
+
   idsToAuthors(ids: number[]) : any[] {
     if (ids === null) {
       return [];
     }
     return ids.map((id) => {
       return this.authors.find((t) => t.id == id);
+    });
+  }
+
+  idsToAuthorsExcept(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.authors.find((t) => t.id == id);
+    });
+  }
+
+  idsToPublishers(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.publishers.find((t) => t.id == id);
+    });
+  }
+
+  idsToPublishersExcept(ids: number[]) : any[] {
+    if (ids === null) {
+      return [];
+    }
+    return ids.map((id) => {
+      return this.publishers.find((t) => t.id == id);
     });
   }
 
