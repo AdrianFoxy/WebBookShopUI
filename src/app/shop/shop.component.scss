@@ -23,5 +23,19 @@ select:focus{
   box-shadow: 0 0 0 0.1rem #dbb695;
 }
 
+.row .books-slider{
+  flex:1 1 42rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.row .books-slider a img{
+  height: 15rem;
+  box-shadow: 10px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.row .books-slider a:hover img{
+  transform: scale(.9);
+}
 
 

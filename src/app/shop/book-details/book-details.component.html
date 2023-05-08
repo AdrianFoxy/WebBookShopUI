@@ -127,6 +127,42 @@
       </div>
     </section>
   </div>
+  <section class="col-12 mt-4">
+    <hr>
+    <h5>Вас може зацікавити:</h5>
+    <hr>
+    <div class="row">
+      <div class="books-slider">
+        <carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [startFromIndex]="6"
+          [interval]="0">
+          <slide *ngFor="let slide of slides; let index=index">
+            <a href="" class="slide"><img [src]="slide.image" alt="slide"></a>
+          </slide>
+        </carousel>
+      </div>
+    </div>
+    <hr>
+
+    <hr>
+    <h5>Вас може зацікавити:</h5>
+    <hr>
+    <div class="row">
+      <div class="books-slider">
+        <carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="singleSlideOffset"
+          [startFromIndex]="6"
+          [interval]="0">
+          <slide *ngFor="let slide of slides; let index=index">
+            <a href="" class="slide"><img [src]="slide.image" alt="slide"></a>
+          </slide>
+        </carousel>
+      </div>
+    </div>
+    <hr>
+
+  </section>
 
   <section class="col-12" >
     <div class="container my-1 text-dark" >

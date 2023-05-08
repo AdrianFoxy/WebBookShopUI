@@ -343,5 +343,15 @@ export class ShopComponent implements OnInit {
     this.getBooksInCatalog();
   }
 
+  itemsPerSlide = 5;
+  singleSlideOffset = true;
+
+  slides = [
+    {image: 'https://localhost:7274//img/books/dvir_kril_i_ruin.jpg'},
+    {image: 'https://localhost:7274//img/books/eye_of_time.jpg'},
+    {image: 'https://localhost:7274//img/books/game_of_thrones.jpg'},
+    {image: 'https://localhost:7274//img/books/fure_of_swords.jpg'},
+    {image: 'https://localhost:7274//img/books/game_of_thrones.jpg'},
+  ];
 
 }
