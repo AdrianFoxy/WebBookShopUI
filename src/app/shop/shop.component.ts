@@ -10,7 +10,6 @@ import { ShopParams } from '../shared/models/shopParams';
 import { Author } from '../shared/models/author';
 
 
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -27,6 +26,7 @@ export class ShopComponent implements OnInit {
   bookseries: BookSeries[] = [];
   genres: Genre[] = [];
   authors: Author[] = [];
+  recommedationsByOrders: Book[] = [];
 
   shopParams = new ShopParams();
 
@@ -92,6 +92,7 @@ export class ShopComponent implements OnInit {
       error: error => console.log(error) // what to do if error
     })
   }
+
 
   // get data for filter ALL
 

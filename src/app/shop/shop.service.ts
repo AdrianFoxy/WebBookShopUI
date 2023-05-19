@@ -100,4 +100,20 @@ export class ShopService {
   getAuthor(){
     return this.http.get<Author[]>(this.baseUrl + 'Book/authors')
   }
+
+  getRecommedationsByOrders(){
+    return this.http.get<Book[]>(this.baseUrl + 'Book/get-recommedations-by-orders');
+  }
+
+  getRecommedationsByAge(){
+    return this.http.get<Book[]>(this.baseUrl + 'Book/get-recommedations-by-age');
+  }
+
+  getRecommedantionsBestSells(){
+    return this.http.get<Book[]>(this.baseUrl + 'Book/get-best-sells-recommendation');
+  }
+
+  getRecommedantionsRandom(){
+    return this.http.get<Book[]>(this.baseUrl + 'Book/get-random-recommedations');
+  }
 }

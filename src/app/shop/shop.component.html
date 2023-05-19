@@ -215,35 +215,6 @@
       <br>
 
     </section>
-    <section class="col-12 mt-4">
-
-      <hr>
-      <h5>Схожі книги на ті що ви купували:</h5>
-      <hr>
-      <div class="books-slider">
-        <carousel [itemsPerSlide]="itemsPerSlide"
-          [singleSlideOffset]="singleSlideOffset"
-          [startFromIndex]="6"
-          [interval]="0">
-          <slide *ngFor="let slide of slides; let index=index">
-            <a href="" class="slide"><img [src]="slide.image" alt="slide"></a>
-          </slide>
-        </carousel>
-      </div>
-
-      <hr>
-      <h5>Вас може зацікавити:</h5>
-      <hr>
-      <div class="books-slider mb-5">
-        <carousel [itemsPerSlide]="itemsPerSlide"
-              [singleSlideOffset]="singleSlideOffset"
-              [startFromIndex]="6"
-              [interval]="0">
-          <slide *ngFor="let slide of slides; let index=index">
-            <a href="" class="slide"><img [src]="slide.image" alt="image slide"></a>
-          </slide>
-        </carousel>
-      </div>
-    </section>
+    <app-recommedations></app-recommedations>
   </div>
 </div>
