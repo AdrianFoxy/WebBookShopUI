@@ -30,7 +30,7 @@
           </a>
           <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
             <li class="py-1" *ngIf="user.role === 'Admin'">
-              <a routerLink="/admin" class="dropdown-item">
+              <a routerLink="/admin-panel" class="dropdown-item">
                 <i class="fa fa-table me-3"> Адмін-панель</i>
               </a>
             </li>
@@ -40,8 +40,8 @@
               </a>
             </li>
             <li class="py-1">
-              <a routerLink="/orders" class="dropdown-item">
-                <i class="fa fa-history me-3"> Замовлення</i>
+              <a routerLink="/user-profile/{{user.id}}" class="dropdown-item">
+                <i class="fa fa-history me-3"> Профіль</i>
               </a>
             </li>
             <div class="dropdown-divider"></div>

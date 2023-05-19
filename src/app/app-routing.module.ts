@@ -12,6 +12,8 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'shop', loadChildren:() => import('./shop/shop.module').then(m => m.ShopModule)},
+  {path: 'admin-panel', loadChildren:() => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)},
+  {path: 'user-profile/:userId', data: {breadcrumb: 'Профіль користувача'}, loadChildren:() => import('./user-profile/user-profile.module').then(m => m.UserProfileModule)},
   {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule)},
   {
     path: 'checkout',
