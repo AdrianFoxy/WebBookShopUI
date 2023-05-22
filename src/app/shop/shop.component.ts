@@ -4,7 +4,6 @@ import { BookSeries } from '../shared/models/bookseries';
 import { Genre } from '../shared/models/genre';
 import { Publisher } from '../shared/models/publisher';
 import { ShopService } from './shop.service';
-
 import { FormControl } from '@angular/forms';
 import { ShopParams } from '../shared/models/shopParams';
 import { Author } from '../shared/models/author';
