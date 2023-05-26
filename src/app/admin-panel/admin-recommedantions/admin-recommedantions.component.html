@@ -115,7 +115,8 @@
             (pageChanged)="onPageChangedBook($event)"></app-pager>
         </div>
 
-        <p *ngIf="recomendTotal > 0">Рекомендації | Розсилка на основі рекомендацій <input type="checkbox" class="custom-control-input" id="customCheck1" checked></p>
+        <p *ngIf="recomendTotal > 0">Рекомендації | Розсилка на основі рекомендацій <input type="checkbox"
+            class="custom-control-input" id="customCheck1" checked></p>
         <table *ngIf="recomendTotal > 0" class="table table-bordered">
           <thead>
             <tr>
@@ -161,7 +162,8 @@
               <td>{{sendRe.uploadedInfo | date: 'dd.MM.yyyy'}}</td>
               <td>{{sendRe.price}}</td>
               <td style="text-align: center;">
-                <span (click)="removeBookFromSendRecom(sendRe)" class="close" style="font-size: 1em; cursor: pointer; display: flex; justify-content: center;">&#10005;</span>
+                <span (click)="removeBookFromSendRecom(sendRe)" class="close"
+                  style="font-size: 1em; cursor: pointer; display: flex; justify-content: center;">&#10005;</span>
               </td>
             </tr>
           </tbody>

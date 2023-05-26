@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../account/account.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
+
+  activeTab: string = 'orders';
+
+  constructor(public accountService: AccountService) {
+
+  }
 
 }
