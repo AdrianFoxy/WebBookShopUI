@@ -5,6 +5,7 @@ import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { UserChoosenbooksComponent } from './user-choosenbooks/user-choosenbooks.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { UserChoosenbooksComponent } from './user-choosenbooks/user-choosenbooks
   ],
   imports: [
     CommonModule,
-    UserProfileRoutingModule
+    UserProfileRoutingModule,
+    SharedModule
   ]
 })
 export class UserProfileModule { }

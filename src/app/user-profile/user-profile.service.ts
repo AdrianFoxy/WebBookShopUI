@@ -26,4 +26,14 @@ export class UserProfileService {
     return this.http.get<Pagination<Order[]>>(this.baseUrl + 'Order/get-orders-for-current-user', {params});
   }
 
+  changeOrderStatus(orderId: number, orderStatusId: number) {
+    const url = this.baseUrl + 'Order/change-order-status';
+
+    let params = new HttpParams();
+    params = params.append('orderId', orderId.toString());
+    params = params.append('orderStatusId', orderStatusId.toString());
+
+    return this.http.put<Order>(url, null, { params });
+  }
+
 }

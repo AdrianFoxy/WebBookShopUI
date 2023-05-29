@@ -16,3 +16,33 @@
   text-transform: uppercase;
   margin-bottom: 0.5em;
 }
+
+.table-wrapper {
+  overflow-y: auto;
+}
+
+.order-items {
+  max-height: 200px; /* Set the desired height for the scrollable area */
+  overflow-y: auto;
+}
+
+.book-title {
+  margin-right: 5px;
+  max-width: 230px;
+}
+
+.book-image {
+  max-height: 80px;
+  max-width: 35px;
+}
+
+td {
+  vertical-align: top;
+}
+
+table {
+  display: table-cell;
+}
+
+
+
