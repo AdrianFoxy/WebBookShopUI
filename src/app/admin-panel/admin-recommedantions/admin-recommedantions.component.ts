@@ -4,6 +4,7 @@ import { AdminPanelService } from '../admin-panel.service';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { ShopService } from 'src/app/shop/shop.service';
 import { Book } from 'src/app/shared/models/book';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-recommedantions',
@@ -27,7 +28,8 @@ export class AdminRecommedantionsComponent {
   bookParam = new ShopParams();
   recomendParams = new ShopParams();
 
-  constructor(private adminService: AdminPanelService, private shopService: ShopService) {
+
+  constructor(private adminService: AdminPanelService, private shopService: ShopService,private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -35,6 +37,10 @@ export class AdminRecommedantionsComponent {
     this.getBooks();
   }
 
+
+  sendRecommedantions(){
+    this.toastr.success('Рекомендації відправлено!');
+  }
 
   getBooks(){
     this.shopService.getBooks(this.bookParam).subscribe({
