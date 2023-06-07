@@ -6,11 +6,14 @@ import { ShopService } from 'src/app/shop/shop.service';
 import { Book } from 'src/app/shared/models/book';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-admin-recommedantions',
   templateUrl: './admin-recommedantions.component.html',
   styleUrls: ['./admin-recommedantions.component.scss']
 })
+
+
 export class AdminRecommedantionsComponent {
 
   users: User[] = [];
@@ -29,7 +32,7 @@ export class AdminRecommedantionsComponent {
   recomendParams = new ShopParams();
 
 
-  constructor(private adminService: AdminPanelService, private shopService: ShopService,private toastr: ToastrService) {
+  constructor(private adminService: AdminPanelService, private shopService: ShopService, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -54,6 +57,17 @@ export class AdminRecommedantionsComponent {
     })
   }
 
+  onDateChange() {
+    this.bookParam.pageNumber = 1; // Сбросить значение страницы на первую при изменении дат
+    this.getBooks();
+    if(this.selectedUser != null){
+      this.recomendParams.MaxUploadDate = this.bookParam.MaxUploadDate;
+      this.recomendParams.MinUploadDate = this.bookParam.MinUploadDate;
+      this.recomendParams.pageNumber = 1;
+      this.getRecommedations(this.selectedUser.id);
+    }
+  }
+
   getAllUsers(){
     this.adminService.getAllUsers(this.userParam).subscribe({
       next: response => {
@@ -68,6 +82,8 @@ export class AdminRecommedantionsComponent {
 
   selectUser(user: User) {
     this.selectedUser = user;
+    this.recomendParams.MaxUploadDate = this.bookParam.MaxUploadDate;
+    this.recomendParams.MinUploadDate = this.bookParam.MinUploadDate;
     this.getRecommedations(user.id);
   }
 

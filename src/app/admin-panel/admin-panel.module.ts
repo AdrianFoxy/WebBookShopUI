@@ -8,6 +8,7 @@ import { AdminRecommedantionsComponent } from './admin-recommedantions/admin-rec
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { SharedModule } from "../shared/shared.module";
 import { ShopModule } from '../shop/shop.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { ShopModule } from '../shop/shop.module';
         AdminPanelRoutingModule,
         CoreModule,
         SharedModule,
-        ShopModule
+        ShopModule,
+        FormsModule
     ]
 })
 export class AdminPanelModule { }

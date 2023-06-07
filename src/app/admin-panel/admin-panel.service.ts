@@ -41,6 +41,9 @@ export class AdminPanelService {
     if(userId)
       params = params.append('userId', userId);
 
+    if(UserParams.MaxUploadDate) params = params.append('MaxUploadDate', UserParams.MaxUploadDate);
+    if(UserParams.MinUploadDate) params = params.append('MinUploadDate', UserParams.MinUploadDate);
+
     return this.http.get<Pagination<Book[]>>(this.baseUrl + 'Book/get-recommedations-by-orders-with-pag', {params});
   }
 

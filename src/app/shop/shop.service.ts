@@ -26,6 +26,11 @@ export class ShopService {
     if(ShopParams.sort) params = params.append('pageSize', ShopParams.pageSize);
     // if(ShopParams.publisherId > 0) params = params.append('PublisherId', ShopParams.publisherId);
     // if(ShopParams.bookseriesIds > 0) params = params.append('BookseriesId', ShopParams.bookseriesIds);
+
+
+    if(ShopParams.MaxUploadDate) params = params.append('MaxUploadDate', ShopParams.MaxUploadDate);
+    if(ShopParams.MinUploadDate) params = params.append('MinUploadDate', ShopParams.MinUploadDate);
+
     if(ShopParams.genreIds && ShopParams.genreIds.length > 0){
       for(let i = 0; i < ShopParams.genreIds.length; i++){
         params = params.append('GenreIds', ShopParams.genreIds[i].toString());
