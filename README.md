@@ -1,6 +1,6 @@
 # WebBookShopUI
 
-Backend of this projest you can found [here](https://github.com/AdrianFoxy/WebBookShopAPI). 
+Backend of this project you can found [here](https://github.com/AdrianFoxy/WebBookShopAPI). 
 
 ## Site screenshots
 ### Home Page
